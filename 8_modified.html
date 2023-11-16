@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            transition: background-color 0.5s ease;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        button {
+            padding: 20px 40px;
+            font-size: 18px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-top: 100px;
+        }
+
+        #text-box {
+            width: 200px;
+            padding: 10px;
+            font-size: 16px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button id="hover-button">Hover Over Me</button>
+    <input type="text" id="text-box" placeholder="Focus Me">
+
+    <script>
+        const button = document.getElementById("hover-button");
+        const textBox = document.getElementById("text-box");
+
+        button.addEventListener("mouseenter", () => {
+            changeBackgroundColor(getRandomColor());
+        });
+
+        button.addEventListener("mouseleave", () => {
+            if (!textBox.matches(":focus")) {
+                changeBackgroundColor("#fff");
+            }
+        });
+
+        textBox.addEventListener("focus", () => {
+            changeBackgroundColor(getRandomColor());
+        });
+
+        textBox.addEventListener("blur", () => {
+            if (!button.matches(":hover")) {
+                textBox.style.backgroundColor = "transparent"; // Reset the background color
+            }
+        });
+
+        function changeBackgroundColor(color) {
+            document.body.style.backgroundColor = color;
+        }
+
+        function getRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+</body>
+</html>

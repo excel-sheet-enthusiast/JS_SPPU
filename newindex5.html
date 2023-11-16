@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background-color: red;
+      font-family: 'Creepster', cursive;
+      text-align: center;
+    }
+
+    #message {
+      font-size: 48px;
+      color: black;
+      margin-top: 30vh;
+      transition: font-size 5s;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+  </style>
+</head>
+
+<body>
+  <div
+	
+ 	id="message">Tempus Mori</div>
+
+	
+
+  <script>
+    let countdown = 6;
+    const countdownInterval = setInterval(function() {
+      if (countdown > 0) {
+        const messageElement = document.getElementById("message");
+        messageElement.innerHTML = `Countdown: ${countdown}`;
+        document.body.style.backgroundColor = `rgb(255, ${(15 - countdown) * 15}, ${(15 - countdown) * 15})`;
+        countdown--;
+      } else {
+        clearInterval(countdownInterval);
+        const messageElement = document.getElementById("message");
+        messageElement.innerHTML = "Game Over.";
+        messageElement.style.margin = "0";
+        messageElement.style.fontSize = "48px";
+      }
+    }, 1000);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array Operations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            color: #666;
+        }
+
+        input[type="number"],
+        input[type="text"] {
+            padding: 5px;
+        }
+
+        button {
+            background-color: #0074cc;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005ea8;
+        }
+
+        #options {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            text-align: left;
+            max-width: 400px;
+        }
+
+        #results {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            text-align: left;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Array Operations</h1>
+
+    <div id="options">
+        <label for="2">Array Elements (comma-separated):</label>
+        <input type="text" id="2" />
+        <button onclick="arrayip()">Insert Elements</button>
+        <br />
+
+        <label for="delete">Delete Element:</label>
+        <input type="text" id="delete" />
+        <button onclick="del()">Delete by Value</button>
+        <br />
+
+        <label for="replaceVal">Replace by Value:</label>
+        <input type="text" id="replaceVal" />
+        <label>With Value:</label>
+        <input type="text" id="replaceValue" />
+        <button onclick="replaceByValue()">Replace</button>
+        <br />
+
+        <label for="replaceIndex">Replace by Index:</label>
+        <input type="number" id="replaceIndex" />
+        <label>With Value:</label>
+        <input type="text" id="replaceValueIndex" />
+        <button onclick="replaceByIndex()">Replace</button>
+        <br />
+
+        <button onclick="Empty()">Empty Array</button>
+        <button onclick="Display()">View Current Array</button>
+    </div>
+
+    <div id="results">
+        <label>Array Length:</label>
+        <div id="res1"></div>
+        <label>Array Operations:</label>
+        <br />
+        <div id="res2"></div>
+        <div id="res3"></div>
+        <div id="res4"></div>
+        <div id="res5"></div>
+        <div id="res6"></div>
+    </div>
+
+    <script>
+        var Array = [];
+
+        function arrayip() {
+            let arrval = document.getElementById("2").value;
+            Array = arrval.split(",");
+            var str = "Array elements added: " + Array.join(", ");
+            document.getElementById("res2").innerHTML = str;
+            document.getElementById("res1").innerHTML = "Array Length: " + Array.length;
+        }
+
+        function del() {
+            let val = document.getElementById("delete").value;
+            var index = Array.indexOf(val);
+            if (index === -1) {
+                var str = "Value '" + val + "' is not present in the array";
+                document.getElementById("res3").innerHTML = str;
+            } else {
+                Array.splice(index, 1);
+                var str = "Value '" + val + "' has been deleted";
+                document.getElementById("res3").innerHTML = str;
+            }
+            document.getElementById("res1").innerHTML = "Array Length: " + Array.length;
+        }
+
+        function replaceByValue() {
+            let oldValue = document.getElementById("replaceVal").value;
+            let newValue = document.getElementById("replaceValue").value;
+            for (var i = 0; i < Array.length; i++) {
+                if (Array[i] === oldValue) {
+                    Array[i] = newValue;
+                }
+            }
+            var str = "Value '" + oldValue + "' has been replaced with '" + newValue + "'";
+            document.getElementById("res4").innerHTML = str;
+            document.getElementById("res1").innerHTML = "Array Length: " + Array.length;
+        }
+
+        function replaceByIndex() {
+            let index = document.getElementById("replaceIndex").value;
+            let newValue = document.getElementById("replaceValueIndex").value;
+            if (index >= 0 && index < Array.length) {
+                Array[index] = newValue;
+                var str = "Value at index " + index + " has been replaced with '" + newValue + "'";
+                document.getElementById("res4").innerHTML = str;
+            } else {
+                var str = "Invalid index";
+                document.getElementById("res4").innerHTML = str;
+            }
+            document.getElementById("res1").innerHTML = "Array Length: " + Array.length;
+        }
+
+        function Empty() {
+            Array = [];
+            document.getElementById("res5").innerHTML = "Array is Emptied";
+            document.getElementById("res1").innerHTML = "Array Length: " + Array.length;
+        }
+
+        function Display() {
+            var str = "Array: " + Array.join(", ");
+            document.getElementById("res6").innerHTML = str;
+        }
+    </script>
+</body>
+</html>

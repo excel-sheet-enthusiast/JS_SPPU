@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #2E3440;
+            color: #ECEFF4;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+        }
+
+        h1 {
+            color: #BF616A;
+        }
+
+        h3 {
+            color: #D8DEE9;
+        }
+
+        h4 {
+            color: #ECEFF4;
+        }
+
+        input[type="number"] {
+            background-color: #434C5E;
+            color: #D8DEE9;
+            border: 1px solid #4C566A;
+            padding: 5px;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border: 1px solid #81A1C1;
+        }
+
+        button {
+            background-color: #BF616A;
+            color: #ECEFF4;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #D8DEE9;
+            color: #2E3440;
+        }
+
+        span {title = "This is a tooltip" 
+            font-size: 12px;
+        }
+
+        #length-error, #breadth-error, #radius-error, #sidea-error, #sideb-error, #sidec-error {
+            display: block;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .shapes {
+            background-color: #3B4252;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px;
+        }
+
+        .result {
+            font-size: 24px;
+            margin: 10px;
+        }
+
+        img {
+            max-width: 100px;
+            max-height: 100px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Area of Different shapes</h1>
+        <h3>42162 Adityapratap</h3>
+        <div class="shapes">
+            <h3 style="color: #BF616A">Rectangle Area Calculation</h3>
+            Length= <input type="number" id="length" />
+            <span id="length-error" style="color: #BF616A"></span>
+            <br />
+            Breadth= <input type="number" id="breadth" />
+            <span id="breadth-error" style="color: #BF616A"></span>
+            <br />
+            <button onclick="calculateRectangle()">Calculate</button>
+            <br />
+            Area=
+            <h4 id="area_rectangle"></h4>
+            <img src="rectangle.png" alt="Rectangle Image">
+        </div>
+
+        <div class="shapes">
+            <h3 style="color: #BF616A">Circle Area Calculation</h3>
+            Radius= <input type="number" id="radius" />
+            <span id="radius-error" style="color: #BF616A"></span>
+            <br />
+            <button onclick="calculateCircle()">Calculate</button>
+            <br />
+            Area=
+            <h4 id="area_circle"></h4>
+            <img src="circle.png" alt="Circle Image">
+        </div>
+
+        <div class="shapes">
+            <h3 style="color: #BF616A">Triangle Area Calculation</h3>
+            Side A= <input type="number" id="sidea" /><br />
+            Side B= <input type="number" id="sideb" /><br />
+            Side C= <input type="number" id="sidec" />
+            <span id="sidea-error" style="color: #BF616A"></span>
+            <span id="sideb-error" style="color: #BF616A"></span>
+            <span id="sidec-error" style="color: #BF616A"></span>
+            <br />
+            <button onclick="calculateTriangle()">Calculate</button>
+            <br />
+            Area=
+            <h4 id="area_triangle"></h4>
+            <img src="triangle.png" alt="Triangle Image">
+        </div>
+    </div>
+
+    <script>
+        function clearError(field) {
+            document.getElementById(field + "-error").innerHTML = "";
+        }
+
+        function calculateRectangle() {
+            var len = parseInt(document.getElementById("length").value);
+            var bre = parseInt(document.getElementById("breadth").value);
+
+            if (len < 0 || bre < 0) {
+                document.getElementById("length-error").innerHTML = "Length and breadth cannot be negative";
+                document.getElementById("area_rectangle").innerHTML = "NA";
+                return;
+            }
+
+            clearError("length");
+            clearError("breadth");
+
+            document.getElementById("area_rectangle").innerHTML = len * bre;
+        }
+
+        function calculateCircle() {
+            var rad = parseInt(document.getElementById("radius").value);
+
+            if (rad < 0) {
+                document.getElementById("radius-error").innerHTML = "Radius cannot be negative";
+                document.getElementById("area_circle").innerHTML = "NA";
+                return;
+            }
+
+            clearError("radius");
+
+            document.getElementById("area_circle").innerHTML = Math.PI * rad * rad;
+        }
+
+        function calculateTriangle() {
+            var a = parseInt(document.getElementById("sidea").value);
+            var b = parseInt(document.getElementById("sideb").value);
+            var c = parseInt(document.getElementById("sidec").value);
+
+            if (a < 0 || b < 0 || c < 0) {
+                document.getElementById("sidea-error").innerHTML = "Side lengths cannot be negative";
+                document.getElementById("area_triangle").innerHTML = "NA";
+                return;
+            }
+
+            clearError("sidea");
+            clearError("sideb");
+            clearError("sidec");
+
+            const s = (a + b + c) / 2;
+            document.getElementById("area_triangle").innerHTML = Math.sqrt(
+                s * (s - a) * (s - b) * (s - c)
+            );
+        }
+    </script>
+</body>
+</html>

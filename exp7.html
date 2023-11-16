@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    input, button {
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Array Operations</h1>
+  <h2>Enter Array Size and Elements</h2>
+  <div>
+    <p>Enter the array size:</p>
+    <input type="number" id="arraySize" placeholder="Enter array size">
+    <p>Enter the array elements (comma-separated values):</p>
+    <input type="text" id="arrayElements" placeholder="Enter array elements">
+    <button onclick="createArray()">Create Array</button>
+  </div>
+
+  <div>
+    <p>Show Current Array:</p>
+    <button onclick="displayArray()">Display Array</button>
+  </div>
+
+  <div>
+    <p>Search for Objects:</p>
+    <input type="text" id="searchObject" placeholder="Search for an object">
+    <button onclick="searchArray()">Search</button>
+  </div>
+
+  <div id="output"></div>
+
+  <script>
+    let myArray = [];
+
+    function createArray() {
+      const sizeInput = document.getElementById("arraySize");
+      const size = parseInt(sizeInput.value);
+      const elementsInput = document.getElementById("arrayElements");
+      const elements = elementsInput.value.split(",");
+
+      if (size <= 0) {
+        showMessage("Please provide a valid positive array size.");
+      } else if (elements.length < size) {
+        showMessage("Not enough elements to create the array.");
+      } else {
+        myArray = elements.slice(0, size);
+        showMessage("Array created with size " + size);
+      }
+      sizeInput.value = '';
+      elementsInput.value = '';
+    }
+
+    function displayArray() {
+      showMessage("Current Array: " + JSON.stringify(myArray));
+    }
+
+    function searchArray() {
+      const searchInput = document.getElementById("searchObject").value;
+      const foundObjects = myArray.filter(item => item.toString().includes(searchInput));
+      if (foundObjects.length > 0) {
+        showMessage("Objects found: " + JSON.stringify(foundObjects));
+      } else {
+        showMessage("No matching objects found.");
+      }
+    }
+
+    function showMessage(message) {
+      const outputDiv = document.getElementById("output");
+      outputDiv.innerHTML = message;
+    }
+  </script>
+</body>
+</html>

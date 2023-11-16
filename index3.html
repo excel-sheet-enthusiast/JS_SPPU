@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>String Operations</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="container">
+  <h1>String Operations</h1>
+  <h2>Adityapratap 42162</h2>
+
+  <div class="operation">
+    <h3>Reverse a String</h3>
+    <label for="reverse">Enter the string to reverse:</label>
+    <input type="text" id="reverse" placeholder="Type in the string" />
+    <button onclick="reverseString()">Reverse!</button>
+    <p>Reversed string: <span id="display"></span></p>
+  </div>
+
+  <div class="operation">
+    <h3>Replace Characters of a String</h3>
+    <label for="str">Enter the string:</label>
+    <input type="text" id="str" placeholder="Type in the string" />
+    <br /><br />
+    <label for="replaceMethod">Select Replace Method:</label>
+    <select id="replaceMethod">
+      <option value="char">By Character</option>
+      <option value="index">By Index</option>
+    </select>
+    <br /><br />
+    <label for="charOrIndex">Enter character/index to be replaced:</label>
+    <input type="text" id="charOrIndex" placeholder="Type character or index" />
+    <br /><br />
+    <label for="newChar">Enter replacing character:</label>
+    <input type="text" id="newChar" placeholder="Type the replacing character" />
+    <button onclick="replaceS()">Replace!</button>
+    <p>Output string after replacing: <span id="display1"></span></p>
+  </div>
+
+  <div class="operation">
+    <h3>Check Palindrome</h3>
+    <label for="palindrome">Enter the string to check palindrome:</label>
+    <input type="text" id="palindrome" placeholder="Type in the string" />
+    <button onclick="palindromeS()">Palindrome Check!</button>
+    <p>Palindrome check: <span id="display2"></span></p>
+  </div>
+
+  <script src="script3.js"></script>
+</body>
+</html>
